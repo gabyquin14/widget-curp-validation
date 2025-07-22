@@ -1,7 +1,5 @@
-import React, { type FC } from "react";
-import * as yup from "yup";
+import { type FC } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import type { FieldError } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputField from "../ui/TextInput";
 import { personalDataSchema } from "../../schema/curp.schema";
