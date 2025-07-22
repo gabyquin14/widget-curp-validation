@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import { type FC } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputField from "../ui/TextInput";
@@ -16,7 +16,20 @@ const CurpProcess: FC = () => {
   } = useForm({
     resolver: yupResolver(curpSchema),
   });
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    console.log(data);
+    window.parent.postMessage(
+      {
+        type: "curp_verified",
+        payload: {
+          curp: { curp: "este es tu curp" },
+          nombre: "Gabriela",
+          status: "verificado",
+        },
+      },
+      "*"
+    );
+  };
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
