@@ -17,8 +17,7 @@ const CurpProcess: FC = () => {
     resolver: yupResolver(curpSchema),
   });
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-    if (typeof window !== "undefined" && window.parent) {
+    if (typeof window !== "undefined") {
       window.parent.postMessage(
         {
           type: "curp_verified",
@@ -30,6 +29,8 @@ const CurpProcess: FC = () => {
         },
         "*"
       );
+
+      console.log(data, window, "asd");
     }
   };
   return (
