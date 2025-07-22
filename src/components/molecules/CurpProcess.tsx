@@ -3,10 +3,8 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputField from "../ui/TextInput";
 import { curpSchema } from "../../schema/curp.schema";
-
-interface IFormInput {
-  curp: string;
-}
+import { sendPostMessage } from "../../utils/sendMessageToHost";
+import type { IFormInputCurp } from "../../types/formTypes";
 
 const CurpProcess: FC = () => {
   const {
@@ -16,22 +14,9 @@ const CurpProcess: FC = () => {
   } = useForm({
     resolver: yupResolver(curpSchema),
   });
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    if (typeof window !== "undefined") {
-      window.parent.postMessage(
-        {
-          type: "curp_verified",
-          payload: {
-            curp: { curp: "este es tu curp" },
-            nombre: "Gabriela",
-            status: "verificado",
-          },
-        },
-        "*"
-      );
-
-      console.log(data, window, "asd");
-    }
+  const onSubmit: SubmitHandler<IFormInputCurp> = (data) => {
+    console.log("data local: ", data);
+    sendPostMessage(data);
   };
   return (
     <div>

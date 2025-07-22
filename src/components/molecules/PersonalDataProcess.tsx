@@ -3,14 +3,8 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputField from "../ui/TextInput";
 import { personalDataSchema } from "../../schema/curp.schema";
-
-interface IFormInput {
-  state: string;
-  birthdate: string;
-  first_surname: string;
-  last_surname: string;
-  gender: string;
-}
+import type { IFormInputPersonalData } from "../../types/formTypes";
+import { sendPostMessage } from "../../utils/sendMessageToHost";
 
 const PersonalDataProcess: FC = () => {
   const {
@@ -20,8 +14,10 @@ const PersonalDataProcess: FC = () => {
   } = useForm({
     resolver: yupResolver(personalDataSchema),
   });
-
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IFormInputPersonalData> = (data) => {
+    console.log("data local: ", data);
+    sendPostMessage(data);
+  };
 
   return (
     <div>
@@ -36,6 +32,7 @@ const PersonalDataProcess: FC = () => {
           register={register("birthdate")}
           label="Fecha de nacimiento"
           name="birthdate"
+          type="date"
           error={errors.birthdate}
         />
         <InputField
