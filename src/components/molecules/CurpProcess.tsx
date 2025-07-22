@@ -18,17 +18,19 @@ const CurpProcess: FC = () => {
   });
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
-    window.parent.postMessage(
-      {
-        type: "curp_verified",
-        payload: {
-          curp: { curp: "este es tu curp" },
-          nombre: "Gabriela",
-          status: "verificado",
+    if (typeof window !== "undefined" && window.parent) {
+      window.parent.postMessage(
+        {
+          type: "curp_verified",
+          payload: {
+            curp: { curp: "este es tu curp" },
+            nombre: "Gabriela",
+            status: "verificado",
+          },
         },
-      },
-      "*"
-    );
+        "*"
+      );
+    }
   };
   return (
     <div>
