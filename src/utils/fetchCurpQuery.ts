@@ -30,7 +30,7 @@ export const fetchDataByCurp = async (data: IFormInputCurp) => {
   //     console.error(err);
   //   }
 };
-const fetchDataByPersonalData = async () => {
+export const fetchDataByPersonalData = async () => {
   try {
     const response = await axios.get("/api/user");
     console.log(response.data);
