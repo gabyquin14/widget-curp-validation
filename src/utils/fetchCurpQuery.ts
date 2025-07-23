@@ -1,68 +1,41 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import type { MockApiCall } from "../types/apiTypes";
 import type {
   IFormInputCurp,
   IFormInputPersonalData,
 } from "../types/formTypes";
 
-const searchByCurpUrl = "https://identity.sandbox.prometeoapi.com/curp/query";
-const searchByPersonalDataUrl =
-  "https://identity.sandbox.prometeoapi.com/curp/reverse-query";
-
-const getHeaders = () => {
-  return {
-    "Content-Type": "application/x-www-form-urlencoded",
-    "X-API-Key": import.meta.env.VITE_API_KEY,
-    Accept: "application/json",
-  };
-};
-
 export const fetchDataByCurp = async (data: IFormInputCurp) => {
-  const formData = new URLSearchParams();
-  formData.append("curp", data.curp);
   try {
-    const response = await axios({
-      url: searchByCurpUrl,
-      method: "POST",
-      data: formData,
-      headers: getHeaders(),
-    });
-
-    return response.data;
+    const response = await axios.post("/.netlify/functions/fetchByCurp", data);
+    console.log("response from api: ", response);
+    return response.data.data;
   } catch (error) {
-    console.error(error);
-  }
+    const axiosError = error as AxiosError<{ errors: { detail: string } }>;
 
-  // try {
-  //   return mockApiCall.data;
-  // } catch {
-  //   return "error";
-  // }
+    return {
+      error: {
+        message: axiosError.response?.data?.errors.detail || "Error inesperado",
+      },
+    };
+  }
 };
 export const fetchDataByPersonalData = async (data: IFormInputPersonalData) => {
   try {
-    const formData = new URLSearchParams();
-
-    for (const [key, value] of Object.entries(data)) {
-      formData.append(key, value);
-    }
-
-    const response = await axios({
-      url: searchByPersonalDataUrl,
-      method: "POST",
-      data: formData,
-      headers: getHeaders(),
-    });
-
-    return response.data;
-
-    // try {
-    //   return mockApiCall.data;
-    // } catch {
-    //   return "error";
-    // }
+    const response = await axios.post(
+      "/.netlify/functions/fetchByPersonalData",
+      data
+    );
+    console.log("response from api: ", response);
+    return response.data.data;
   } catch (error) {
-    console.error(error);
+    const axiosError = error as AxiosError<{ errors: { detail: string } }>;
+
+    return {
+      error: {
+        message: axiosError.response?.data?.errors.detail || "Error inesperado",
+      },
+    };
   }
 };
 

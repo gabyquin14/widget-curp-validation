@@ -25,7 +25,13 @@ const PersonalDataProcess: FC<Props> = ({ onResult }) => {
     resolver: yupResolver(personalDataSchema),
   });
   const onSubmit: SubmitHandler<IFormInputPersonalData> = async (data) => {
-    const response = await fetchDataByPersonalData(data);
+    const [year, month, day] = data.birthdate.split("-");
+    const formattedData = {
+      ...data,
+      birthdate: `${day}/${month}/${year}`,
+    };
+    const response = await fetchDataByPersonalData(formattedData);
+
     onResult(response);
     sendPostMessage(data);
   };

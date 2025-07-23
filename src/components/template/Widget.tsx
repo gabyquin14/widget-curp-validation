@@ -4,9 +4,13 @@ import PersonalDataProcess from "../molecules/PersonalDataProcess";
 import Tabs from "../ui/Tabs";
 import CurpResultsCard from "../atoms/CurpResultsCard";
 import CurpImageWithData from "../atoms/CurpImageWithData";
+import ErrorCard from "../atoms/ErrorCard";
+import type { userCurpInfo } from "../../types/apiTypes";
 
 const Widget: FC = () => {
-  const [curpData, setCurpData] = useState(null);
+  const [curpData, setCurpData] = useState<userCurpInfo | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 
   const handleTabChange = (index: number) => {
@@ -14,14 +18,29 @@ const Widget: FC = () => {
     setCurpData(null);
   };
 
+  const handleCurpResult = (result: {
+    data?: userCurpInfo;
+    error?: { message: string };
+  }) => {
+    if (result.error) {
+      setErrorMessage(result.error.message);
+      setCurpData(null);
+    } else if (result.data) {
+      setCurpData(result.data);
+      setErrorMessage(null);
+    }
+  };
+
   const tabs = [
     {
       label: "CURP",
-      content: <CurpProcess onResult={(data) => setCurpData(data)} />,
+      content: <CurpProcess onResult={(data) => handleCurpResult(data)} />,
     },
     {
       label: "Datos personales",
-      content: <PersonalDataProcess onResult={(data) => setCurpData(data)} />,
+      content: (
+        <PersonalDataProcess onResult={(data) => handleCurpResult(data)} />
+      ),
     },
   ];
 
@@ -34,6 +53,8 @@ const Widget: FC = () => {
           activeIndex={selectedTabIndex}
           onTabChange={handleTabChange}
         />
+        {errorMessage && <ErrorCard message={errorMessage} />}
+
         {curpData && (
           <>
             <CurpResultsCard data={curpData} />
