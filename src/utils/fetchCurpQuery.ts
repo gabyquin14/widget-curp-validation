@@ -39,7 +39,7 @@ export const fetchDataByPersonalData = async (data: IFormInputPersonalData) => {
   }
 };
 
-const mockApiCall: MockApiCall = {
+export const mockApiCall: MockApiCall = {
   data: {
     personal_data: {
       sexo: "HOMBRE",
