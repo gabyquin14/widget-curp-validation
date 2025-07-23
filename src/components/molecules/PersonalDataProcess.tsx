@@ -5,6 +5,11 @@ import InputField from "../ui/TextInput";
 import { personalDataSchema } from "../../schema/curp.schema";
 import type { IFormInputPersonalData } from "../../types/formTypes";
 import { sendPostMessage } from "../../utils/sendMessageToHost";
+import {
+  genderOptionsArray,
+  mexicoStates,
+} from "../../constants/personalDataArrays";
+import SelectInput from "../ui/SelectInput";
 
 const PersonalDataProcess: FC = () => {
   const {
@@ -23,19 +28,6 @@ const PersonalDataProcess: FC = () => {
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputField
-          register={register("state")}
-          label="Estado de nacimiento"
-          name="state"
-          error={errors.state}
-        />
-        <InputField
-          register={register("birthdate")}
-          label="Fecha de nacimiento"
-          name="birthdate"
-          type="date"
-          error={errors.birthdate}
-        />
-        <InputField
           register={register("name")}
           label="Nombre"
           name="name"
@@ -53,12 +45,29 @@ const PersonalDataProcess: FC = () => {
           name="last_surname"
           error={errors.last_surname}
         />
+        <SelectInput
+          register={register("state")}
+          label="Estado de nacimiento"
+          name="state"
+          options={mexicoStates}
+          error={errors.state}
+        />
         <InputField
+          register={register("birthdate")}
+          label="Fecha de nacimiento"
+          name="birthdate"
+          type="date"
+          error={errors.birthdate}
+        />
+
+        <SelectInput
           register={register("gender")}
           label="Género"
           name="gender"
+          options={genderOptionsArray}
           error={errors.gender}
         />
+
         <button type="submit">Buscar</button>
       </form>
     </div>

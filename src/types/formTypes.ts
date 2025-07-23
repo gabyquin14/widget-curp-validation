@@ -8,3 +8,8 @@ export interface IFormInputPersonalData {
   last_surname: string;
   gender: string;
 }
+
+export type SelectOptionsType = {
+  value: string;
+  text: string;
+};
