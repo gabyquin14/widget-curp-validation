@@ -19,7 +19,10 @@ const Widget: FC = () => {
       label: "CURP",
       content: <CurpProcess onResult={(data) => setCurpData(data)} />,
     },
-    { label: "Datos personales", content: <PersonalDataProcess /> },
+    {
+      label: "Datos personales",
+      content: <PersonalDataProcess onResult={(data) => setCurpData(data)} />,
+    },
   ];
 
   return (

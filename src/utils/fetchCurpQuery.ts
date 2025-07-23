@@ -1,6 +1,9 @@
 import axios from "axios";
 import type { MockApiCall } from "../types/apiTypes";
-import type { IFormInputCurp } from "../types/formTypes";
+import type {
+  IFormInputCurp,
+  IFormInputPersonalData,
+} from "../types/formTypes";
 
 export const fetchDataByCurp = async (data: IFormInputCurp) => {
   const formData = new URLSearchParams();
@@ -30,10 +33,16 @@ export const fetchDataByCurp = async (data: IFormInputCurp) => {
   //     console.error(err);
   //   }
 };
-export const fetchDataByPersonalData = async () => {
+export const fetchDataByPersonalData = async (data: IFormInputPersonalData) => {
   try {
-    const response = await axios.get("/api/user");
-    console.log(response.data);
+    const formData = new URLSearchParams();
+    formData.append("curp", data.curp);
+
+    try {
+      return mockApiCall.data;
+    } catch {
+      return "error";
+    }
   } catch (err) {
     console.error(err);
   }

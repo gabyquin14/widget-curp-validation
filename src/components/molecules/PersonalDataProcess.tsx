@@ -10,8 +10,13 @@ import {
   mexicoStates,
 } from "../../constants/personalDataArrays";
 import SelectInput from "../ui/SelectInput";
+import { fetchDataByPersonalData } from "../../utils/fetchCurpQuery";
 
-const PersonalDataProcess: FC = () => {
+type Props = {
+  onResult: (data: any) => void;
+};
+
+const PersonalDataProcess: FC<Props> = ({ onResult }) => {
   const {
     register,
     handleSubmit,
@@ -19,8 +24,10 @@ const PersonalDataProcess: FC = () => {
   } = useForm({
     resolver: yupResolver(personalDataSchema),
   });
-  const onSubmit: SubmitHandler<IFormInputPersonalData> = (data) => {
+  const onSubmit: SubmitHandler<IFormInputPersonalData> = async (data) => {
     console.log("data local: ", data);
+    const response = await fetchDataByPersonalData(data);
+    onResult(response);
     sendPostMessage(data);
   };
 
