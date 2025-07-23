@@ -5,8 +5,13 @@ import InputField from "../ui/TextInput";
 import { curpSchema } from "../../schema/curp.schema";
 import { sendPostMessage } from "../../utils/sendMessageToHost";
 import type { IFormInputCurp } from "../../types/formTypes";
+import { fetchDataByCurp } from "../../utils/fetchCurpQuery";
 
-const CurpProcess: FC = () => {
+type Props = {
+  onResult: (data: any) => void;
+};
+
+const CurpProcess: FC<Props> = ({ onResult }) => {
   const {
     register,
     handleSubmit,
@@ -14,8 +19,11 @@ const CurpProcess: FC = () => {
   } = useForm({
     resolver: yupResolver(curpSchema),
   });
-  const onSubmit: SubmitHandler<IFormInputCurp> = (data) => {
+
+  const onSubmit: SubmitHandler<IFormInputCurp> = async (data) => {
     console.log("data local: ", data);
+    const response = await fetchDataByCurp(data);
+    onResult(response);
     sendPostMessage(data);
   };
   return (

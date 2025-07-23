@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { type FC } from "react";
 
 type Tab = { label: string; content: React.ReactNode };
 
-const Tabs = ({ tabs }: { tabs: Tab[] }) => {
-  const [active, setActive] = useState(0);
+type TabsProps = {
+  tabs: Tab[];
+  activeIndex: number;
+  onTabChange: (index: number) => void;
+};
 
+const Tabs: FC<TabsProps> = ({ tabs, activeIndex, onTabChange }) => {
   return (
     <div>
       <nav>
@@ -13,10 +17,9 @@ const Tabs = ({ tabs }: { tabs: Tab[] }) => {
             <li key={i} role="presentation">
               <button
                 role="tab"
-                aria-selected={active === i}
-                onClick={() => setActive(i)}
+                onClick={() => onTabChange(i)}
                 className={`py-2 px-4 ${
-                  active === i
+                  activeIndex === i
                     ? "border-b-2 border-blue-500 font-semibold"
                     : "text-gray-500"
                 }`}
@@ -29,9 +32,10 @@ const Tabs = ({ tabs }: { tabs: Tab[] }) => {
       </nav>
 
       <section role="tabpanel" className="p-4">
-        {tabs[active].content}
+        {tabs[activeIndex].content}
       </section>
     </div>
   );
 };
+
 export default Tabs;
