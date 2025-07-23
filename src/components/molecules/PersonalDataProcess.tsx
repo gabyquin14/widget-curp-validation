@@ -26,23 +26,26 @@ const PersonalDataProcess: FC = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <InputField
           register={register("name")}
           label="Nombre"
           name="name"
+          placeholder="Ingresa tu nombre"
           error={errors.name}
         />
         <InputField
           register={register("first_surname")}
           label="Primer apellido"
           name="first_surname"
+          placeholder="Ingresa tu primer apellido"
           error={errors.first_surname}
         />
         <InputField
           register={register("last_surname")}
           label="Segundo apellido"
           name="last_surname"
+          placeholder="Ingresa tu segundo apellido"
           error={errors.last_surname}
         />
         <SelectInput

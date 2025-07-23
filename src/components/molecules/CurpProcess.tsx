@@ -28,7 +28,7 @@ const CurpProcess: FC<Props> = ({ onResult }) => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <InputField
           register={register("curp")}
           label="Clave única de registro de población (CURP)"

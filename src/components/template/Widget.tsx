@@ -23,19 +23,21 @@ const Widget: FC = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-8">
-      <h1>Curp validation</h1>
-      <Tabs
-        tabs={tabs}
-        activeIndex={selectedTabIndex}
-        onTabChange={handleTabChange}
-      />
-      {curpData && (
-        <>
-          <CurpResultsCard data={curpData} />
-          <CurpImageWithData data={curpData} />
-        </>
-      )}
+    <div className="flex items-center justify-center min-h-screen px-4 w-dvw">
+      <div className="w-full max-w-2xl my-8 p-8 rounded-2xl shadow-md border border-gray-200 flex flex-col gap-8">
+        <h1 className="text-4xl font-bold text-center">Curp validation</h1>
+        <Tabs
+          tabs={tabs}
+          activeIndex={selectedTabIndex}
+          onTabChange={handleTabChange}
+        />
+        {curpData && (
+          <>
+            <CurpResultsCard data={curpData} />
+            <CurpImageWithData data={curpData} />
+          </>
+        )}
+      </div>
     </div>
   );
 };

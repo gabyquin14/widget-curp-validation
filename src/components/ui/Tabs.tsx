@@ -12,7 +12,7 @@ const Tabs: FC<TabsProps> = ({ tabs, activeIndex, onTabChange }) => {
   return (
     <div>
       <nav>
-        <ul role="tablist" className="flex gap-4 border-b">
+        <ul role="tablist" className="flex gap-4 text-lg mb-6">
           {tabs.map((tab, i) => (
             <li key={i} role="presentation">
               <button
@@ -31,9 +31,7 @@ const Tabs: FC<TabsProps> = ({ tabs, activeIndex, onTabChange }) => {
         </ul>
       </nav>
 
-      <section role="tabpanel" className="p-4">
-        {tabs[activeIndex].content}
-      </section>
+      <section role="tabpanel">{tabs[activeIndex].content}</section>
     </div>
   );
 };
