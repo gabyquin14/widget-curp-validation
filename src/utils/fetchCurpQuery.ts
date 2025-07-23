@@ -9,11 +9,15 @@ export const fetchDataByCurp = async (data: IFormInputCurp) => {
   try {
     const response = await axios.post("/.netlify/functions/fetchByCurp", data);
     console.log("response from api: ", response);
-    return response.data.data;
+    return {
+      data: response.data.data,
+      error: null,
+    };
   } catch (error) {
     const axiosError = error as AxiosError<{ errors: { detail: string } }>;
 
     return {
+      data: null,
       error: {
         message: axiosError.response?.data?.errors.detail || "Error inesperado",
       },
@@ -27,11 +31,15 @@ export const fetchDataByPersonalData = async (data: IFormInputPersonalData) => {
       data
     );
     console.log("response from api: ", response);
-    return response.data.data;
+    return {
+      data: response.data.data,
+      error: null,
+    };
   } catch (error) {
     const axiosError = error as AxiosError<{ errors: { detail: string } }>;
 
     return {
+      data: null,
       error: {
         message: axiosError.response?.data?.errors.detail || "Error inesperado",
       },

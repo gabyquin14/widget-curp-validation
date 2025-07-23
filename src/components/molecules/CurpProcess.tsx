@@ -6,9 +6,10 @@ import { curpSchema } from "../../schema/curp.schema";
 import { sendPostMessage } from "../../utils/sendMessageToHost";
 import type { IFormInputCurp } from "../../types/formTypes";
 import { fetchDataByCurp } from "../../utils/fetchCurpQuery";
+import type { CurpApiResponse } from "../../types/apiTypes";
 
 type Props = {
-  onResult: (data: any) => void;
+  onResult: (data: CurpApiResponse) => void;
 };
 
 const CurpProcess: FC<Props> = ({ onResult }) => {
@@ -22,7 +23,6 @@ const CurpProcess: FC<Props> = ({ onResult }) => {
 
   const onSubmit: SubmitHandler<IFormInputCurp> = async (data) => {
     const response = await fetchDataByCurp(data);
-    console.log(response, "response");
     onResult(response);
     sendPostMessage(data);
   };

@@ -11,9 +11,10 @@ import {
 } from "../../constants/personalDataArrays";
 import SelectInput from "../ui/SelectInput";
 import { fetchDataByPersonalData } from "../../utils/fetchCurpQuery";
+import type { CurpApiResponse } from "../../types/apiTypes";
 
 type Props = {
-  onResult: (data: any) => void;
+  onResult: (data: CurpApiResponse) => void;
 };
 
 const PersonalDataProcess: FC<Props> = ({ onResult }) => {
@@ -30,8 +31,8 @@ const PersonalDataProcess: FC<Props> = ({ onResult }) => {
       ...data,
       birthdate: `${day}/${month}/${year}`,
     };
-    const response = await fetchDataByPersonalData(formattedData);
 
+    const response = await fetchDataByPersonalData(formattedData);
     onResult(response);
     sendPostMessage(data);
   };

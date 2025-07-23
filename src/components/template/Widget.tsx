@@ -5,7 +5,7 @@ import Tabs from "../ui/Tabs";
 import CurpResultsCard from "../atoms/CurpResultsCard";
 import CurpImageWithData from "../atoms/CurpImageWithData";
 import ErrorCard from "../atoms/ErrorCard";
-import type { userCurpInfo } from "../../types/apiTypes";
+import type { CurpApiResponse, userCurpInfo } from "../../types/apiTypes";
 
 const Widget: FC = () => {
   const [curpData, setCurpData] = useState<userCurpInfo | null>(null);
@@ -18,14 +18,12 @@ const Widget: FC = () => {
     setCurpData(null);
   };
 
-  const handleCurpResult = (result: {
-    data?: userCurpInfo;
-    error?: { message: string };
-  }) => {
+  const handleCurpResult = (result: CurpApiResponse) => {
+    console.log("este es el result: ", result);
     if (result.error) {
       setErrorMessage(result.error.message);
       setCurpData(null);
-    } else if (result.data) {
+    } else {
       setCurpData(result.data);
       setErrorMessage(null);
     }
@@ -54,7 +52,6 @@ const Widget: FC = () => {
           onTabChange={handleTabChange}
         />
         {errorMessage && <ErrorCard message={errorMessage} />}
-
         {curpData && (
           <>
             <CurpResultsCard data={curpData} />

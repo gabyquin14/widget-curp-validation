@@ -1,3 +1,8 @@
+export type CurpApiResponse = {
+  data: userCurpInfo | null;
+  error: { message: string } | null;
+};
+
 export type MockApiCall = {
   data: userCurpInfo;
   errors: null;
