@@ -25,7 +25,6 @@ const PersonalDataProcess: FC<Props> = ({ onResult }) => {
     resolver: yupResolver(personalDataSchema),
   });
   const onSubmit: SubmitHandler<IFormInputPersonalData> = async (data) => {
-    console.log("data local: ", data);
     const response = await fetchDataByPersonalData(data);
     onResult(response);
     sendPostMessage(data);

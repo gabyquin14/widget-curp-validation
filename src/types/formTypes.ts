@@ -4,6 +4,7 @@ export interface IFormInputCurp {
 export interface IFormInputPersonalData {
   state: string;
   birthdate: string;
+  name: string;
   first_surname: string;
   last_surname: string;
   gender: string;

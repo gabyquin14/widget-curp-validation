@@ -5,46 +5,64 @@ import type {
   IFormInputPersonalData,
 } from "../types/formTypes";
 
+const searchByCurpUrl = "https://identity.sandbox.prometeoapi.com/curp/query";
+const searchByPersonalDataUrl =
+  "https://identity.sandbox.prometeoapi.com/curp/reverse-query";
+
+const getHeaders = () => {
+  return {
+    "Content-Type": "application/x-www-form-urlencoded",
+    "X-API-Key": import.meta.env.VITE_API_KEY,
+    Accept: "application/json",
+  };
+};
+
 export const fetchDataByCurp = async (data: IFormInputCurp) => {
   const formData = new URLSearchParams();
   formData.append("curp", data.curp);
-
   try {
-    return mockApiCall.data;
-  } catch {
-    return "error";
-  }
-  // const formData = new URLSearchParams();
-  // formData.append("curp", "ABCD880304HDWXYZ45");
+    const response = await axios({
+      url: searchByCurpUrl,
+      method: "POST",
+      data: formData,
+      headers: getHeaders(),
+    });
 
-  // const res = await axios( {
-  //   method: "POST",
-  // url:"http://localhost:3001/curp/query",
-  //   headers: {
-  //     "Content-Type": "application/x-www-form-urlencoded",
-  //     Accept: "application/json",
-  //   },
-  //   data: formData.toString(),
-  // });
-  // const parsedResponse = await res.json();
-  // console.log(parsedResponse);
-  //     console.log(response.data);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+
+  // try {
+  //   return mockApiCall.data;
+  // } catch {
+  //   return "error";
+  // }
 };
 export const fetchDataByPersonalData = async (data: IFormInputPersonalData) => {
   try {
     const formData = new URLSearchParams();
-    formData.append("curp", data.curp);
 
-    try {
-      return mockApiCall.data;
-    } catch {
-      return "error";
+    for (const [key, value] of Object.entries(data)) {
+      formData.append(key, value);
     }
-  } catch (err) {
-    console.error(err);
+
+    const response = await axios({
+      url: searchByPersonalDataUrl,
+      method: "POST",
+      data: formData,
+      headers: getHeaders(),
+    });
+
+    return response.data;
+
+    // try {
+    //   return mockApiCall.data;
+    // } catch {
+    //   return "error";
+    // }
+  } catch (error) {
+    console.error(error);
   }
 };
 
