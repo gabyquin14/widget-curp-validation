@@ -1,3 +1,4 @@
+import type { MockApiCall } from "../types/apiTypes";
 import type { SelectOptionsType } from "../types/formTypes";
 
 export const genderOptionsArray: SelectOptionsType[] = [
@@ -45,3 +46,34 @@ export const mexicoStates = [
   { value: "ZS", text: "Zacatecas" },
   { value: "NE", text: "Nacido en el extranjero" },
 ];
+
+export const mockApiCall: MockApiCall = {
+  data: {
+    personal_data: {
+      sexo: "MUJER",
+      entidad: "DISTRITO FEDERAL",
+      nacionalidad: "MEXICO",
+      statusCurp: "RCN",
+      nombres: "GABS",
+      segundoApellido: "RAMIREZ",
+      claveEntidad: "DF",
+      docProbatorio: 1,
+      fechaNacimiento: "08/05/2000",
+      primerApellido: "QUINTANILLA",
+      curp: "ABCD880304HDWXYZ45",
+    },
+    document_data: {
+      foja: "",
+      claveEntidadRegistro: "25",
+      numActa: "00064",
+      tomo: "",
+      anioReg: "1988",
+      municipioRegistro: "GUASAVE",
+      libro: "0001",
+      entidadRegistro: "SINALOA",
+      claveMunicipioRegistro: "011",
+    },
+    pdf_url: "/pdf/81116a034e539b523b746944b35875b8.pdf",
+  },
+  errors: null,
+};
