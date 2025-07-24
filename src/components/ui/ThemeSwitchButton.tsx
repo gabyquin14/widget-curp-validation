@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const ThemeSwitchButton = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);

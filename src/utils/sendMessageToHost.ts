@@ -12,8 +12,6 @@ export const sendPostMessage = (
         type: "curp_verified",
         payload: {
           curp: data,
-          nombre: "Gabriela",
-          status: "verificado",
         },
       },
       "*"
