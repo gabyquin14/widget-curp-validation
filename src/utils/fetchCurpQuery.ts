@@ -1,5 +1,4 @@
 import axios, { AxiosError } from "axios";
-import type { MockApiCall } from "../types/apiTypes";
 import type {
   IFormInputCurp,
   IFormInputPersonalData,

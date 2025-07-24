@@ -6,7 +6,7 @@ import CurpResultsCard from "../atoms/CurpResultsCard";
 import CurpImageWithData from "../atoms/CurpImageWithData";
 import ErrorCard from "../atoms/ErrorCard";
 import type { CurpApiResponse, userCurpInfo } from "../../types/apiTypes";
-import ThemeSwitchButton from "../atoms/ThemeSwitchButton";
+import ThemeSwitchButton from "../ui/ThemeSwitchButton";
 
 const Widget: FC = () => {
   const [curpData, setCurpData] = useState<userCurpInfo | null>(null);

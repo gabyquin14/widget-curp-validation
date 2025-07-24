@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-type Props = {};
-
-const ThemeSwitchButton = (props: Props) => {
+const ThemeSwitchButton = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
