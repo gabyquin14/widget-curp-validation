@@ -35,7 +35,7 @@ const PersonalDataProcess: FC<Props> = ({ onResult }) => {
 
     const response = await fetchDataByPersonalData(formattedData);
     onResult(response);
-    sendPostMessage(data);
+    sendPostMessage(response);
   };
 
   return (

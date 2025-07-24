@@ -25,7 +25,7 @@ const CurpProcess: FC<Props> = ({ onResult }) => {
   const onSubmit: SubmitHandler<IFormInputCurp> = async (data) => {
     const response = await fetchDataByCurp(data);
     onResult(response);
-    sendPostMessage(data);
+    sendPostMessage(response);
   };
   return (
     <div>

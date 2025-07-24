@@ -1,11 +1,6 @@
-import type {
-  IFormInputCurp,
-  IFormInputPersonalData,
-} from "../types/formTypes";
+import type { CurpApiResponse } from "../types/apiTypes";
 
-export const sendPostMessage = (
-  data: IFormInputCurp | IFormInputPersonalData
-) => {
+export const sendPostMessage = (data: CurpApiResponse) => {
   if (typeof window !== "undefined") {
     window.parent.postMessage(
       {
