@@ -10,12 +10,14 @@ const CurpResultsCard = ({ data }: Props) => {
   const { personal_data, document_data } = data;
 
   return (
-    <section className="space-y-6">
+    <section className="space-y-6 text-gray-950 dark:text-slate-100">
       <div>
-        <h2 className="text-lg font-semibold mb-2">Datos Personales</h2>
+        <h2 className="text-lg font-semibold mb-2 text-red-600">
+          Datos Personales
+        </h2>
         <ul className="list-disc list-inside space-y-1">
           <li>
-            <strong>Nombre completo:</strong>{" "}
+            <strong>Nombre completo:</strong>
             {`${personal_data.nombres} ${personal_data.primerApellido} ${personal_data.segundoApellido}`}
           </li>
           <li>
@@ -34,7 +36,7 @@ const CurpResultsCard = ({ data }: Props) => {
             <strong>Clave de Entidad:</strong> {personal_data.claveEntidad}
           </li>
           <li>
-            <strong>Fecha de Nacimiento:</strong>{" "}
+            <strong>Fecha de Nacimiento:</strong>
             {personal_data.fechaNacimiento}
           </li>
           <li>
@@ -47,7 +49,9 @@ const CurpResultsCard = ({ data }: Props) => {
       </div>
 
       <div>
-        <h2 className="text-lg font-semibold mb-2">Datos de Registro</h2>
+        <h2 className="text-lg font-semibold mb-2 text-red-600">
+          Datos de Registro
+        </h2>
         <ul className="list-disc list-inside space-y-1">
           <li>
             <strong>Entidad Registro:</strong> {document_data.entidadRegistro}

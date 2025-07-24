@@ -19,7 +19,7 @@ const InputField: React.FC<Props> = ({
   type = "text",
 }) => {
   return (
-    <div className="input-field">
+    <div className="input-field text-gray-950 dark:text-slate-100">
       <label htmlFor={name} className="block mb-1 font-semibold">
         {label}
       </label>
@@ -28,7 +28,7 @@ const InputField: React.FC<Props> = ({
         type={type}
         placeholder={placeholder}
         {...register}
-        className={`w-full px-3 py-2 border rounded-md outline-none ${
+        className={`w-full px-3 py-2 border rounded-md bg-white dark:bg-slate-800   ${
           error?.message ? "border-red-500" : "border-gray-300"
         }`}
       />

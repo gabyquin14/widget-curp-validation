@@ -6,6 +6,7 @@ import CurpResultsCard from "../atoms/CurpResultsCard";
 import CurpImageWithData from "../atoms/CurpImageWithData";
 import ErrorCard from "../atoms/ErrorCard";
 import type { CurpApiResponse, userCurpInfo } from "../../types/apiTypes";
+import ThemeSwitchButton from "../atoms/ThemeSwitchButton";
 
 const Widget: FC = () => {
   const [curpData, setCurpData] = useState<userCurpInfo | null>(null);
@@ -43,9 +44,14 @@ const Widget: FC = () => {
   ];
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-4 w-dvw">
+    <main className="flex items-center justify-center min-h-screen px-4 w-dvw bg-slate-100 dark:bg-gray-950 ">
       <div className="w-full max-w-2xl my-8 p-8 rounded-2xl shadow-md border border-gray-200 flex flex-col gap-8">
-        <h1 className="text-4xl font-bold text-center">Curp validation</h1>
+        <header className="flex justify-between align-center">
+          <h1 className="text-4xl font-bold text-gray-950 dark:text-slate-100">
+            Curp validation
+          </h1>
+          <ThemeSwitchButton />
+        </header>
         <Tabs
           tabs={tabs}
           activeIndex={selectedTabIndex}
@@ -59,7 +65,7 @@ const Widget: FC = () => {
           </>
         )}
       </div>
-    </div>
+    </main>
   );
 };
 export default Widget;

@@ -12,6 +12,7 @@ import {
 import SelectInput from "../ui/SelectInput";
 import { fetchDataByPersonalData } from "../../utils/fetchCurpQuery";
 import type { CurpApiResponse } from "../../types/apiTypes";
+import Button from "../ui/Button";
 
 type Props = {
   onResult: (data: CurpApiResponse) => void;
@@ -84,7 +85,7 @@ const PersonalDataProcess: FC<Props> = ({ onResult }) => {
           error={errors.gender}
         />
 
-        <button type="submit">Buscar</button>
+        <Button text="Buscar" />
       </form>
     </div>
   );

@@ -18,10 +18,10 @@ const Tabs: FC<TabsProps> = ({ tabs, activeIndex, onTabChange }) => {
               <button
                 role="tab"
                 onClick={() => onTabChange(i)}
-                className={`py-2 px-4 ${
+                className={`py-2 px-4 text-slate-100 bg-red-600 transition-opacity duration-200 ${
                   activeIndex === i
-                    ? "border-b-2 border-blue-500 font-semibold"
-                    : "text-gray-500"
+                    ? "opacity-100 font-semibold"
+                    : "!opacity-50"
                 }`}
               >
                 {tab.label}

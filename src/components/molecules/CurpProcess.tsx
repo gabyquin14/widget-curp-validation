@@ -7,6 +7,7 @@ import { sendPostMessage } from "../../utils/sendMessageToHost";
 import type { IFormInputCurp } from "../../types/formTypes";
 import { fetchDataByCurp } from "../../utils/fetchCurpQuery";
 import type { CurpApiResponse } from "../../types/apiTypes";
+import Button from "../ui/Button";
 
 type Props = {
   onResult: (data: CurpApiResponse) => void;
@@ -32,10 +33,11 @@ const CurpProcess: FC<Props> = ({ onResult }) => {
         <InputField
           register={register("curp")}
           label="Clave única de registro de población (CURP)"
+          placeholder="Ingrese su CURP"
           name="curp"
           error={errors.curp}
         />
-        <button type="submit">Buscar</button>
+        <Button text="Buscar" />
       </form>
     </div>
   );
