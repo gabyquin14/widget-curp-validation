@@ -5,9 +5,7 @@ export const sendPostMessage = (data: CurpApiResponse) => {
     window.parent.postMessage(
       {
         type: "curp_verified",
-        payload: {
-          curp: data,
-        },
+        payload: data,
       },
       "*"
     );
