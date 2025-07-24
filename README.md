@@ -50,7 +50,7 @@ When you run `netlify dev`, two things happen:
 > - Replace the sandbox URL in `netlify/functions/proxy-server.js` with the production endpoint.
 > - Provide your **production API key** via the `apikey` query param.
 
-Example embed code for local use:
+Example embed code for local use (this is the port Netlify functions use):
 
 ```js
 <iframe
